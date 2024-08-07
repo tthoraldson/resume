@@ -62,7 +62,7 @@
 %----------------------------------------------------------------------------------------
 
 \newcommand{\name}[1]{\renewcommand{\name}{#1}} % Defines the \name command to set the user's name
-
+\newcommand{\jobtitle}[1]{\renewcommand{\jobtitle}{#1}} % Defines the \jobtitle command to set the user's job title
 \newcommand{\addressSep}{$\diamond$} % Set default address separator to a diamond symbol
 
 % One, two or three address lines can be specified
@@ -101,6 +101,13 @@
 	\endgroup
 }
 
+% \printjobtitle is used to output the user's job title
+\newcommand{\printjobtitle}{
+    \begingroup
+        \centerline{\LARGE\jobtitle} % Style and output the user's job title
+    \endgroup
+}
+
 %----------------------------------------------------------------------------------------
 %	OUTPUT THE NAME & ADDRESS LINES AUTOMATICALLY
 %----------------------------------------------------------------------------------------
@@ -109,6 +116,7 @@
 \renewcommand{\document}{
 	\ori@document  % Output the original \document command but add to it below
 	\printname % Output the user's name
+	\@ifundefined{jobtitle}{}{\printjobtitle}
 	\@ifundefined{@addressone}{}{\printaddress{\@addressone}} % Output the first address if specified
 	\@ifundefined{@addresstwo}{}{\printaddress{\@addresstwo}} % Output the second address if specified
 	\@ifundefined{@addressthree}{}{\printaddress{\@addressthree}} % Output the third address if specified
